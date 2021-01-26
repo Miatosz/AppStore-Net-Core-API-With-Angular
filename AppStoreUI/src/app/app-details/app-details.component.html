@@ -1,0 +1,53 @@
+
+<div style="display: flex; flex-direction: column;">
+
+    <select [(ngModel)]='platformSelected' (ngModelChange)='onAppSelected($event)'
+    style="align-self: center;" >
+        <option *ngFor='let platform of platformDetail'  [value]="platform.id">
+            {{platform.name}}
+        </option>
+    </select>
+</div>
+<!-- <table class="table" style="float: right;"> -->
+    <!-- <thead class="thead-light">
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>DateOfLastUpdate</th>
+            <th>Price</th>
+            <th>NumberOfDownloads</th>
+            <th>DeveloperName</th>
+            <th>PlatformName</th>
+            <th>AgeClassificationName</th>            
+        </tr>
+    </thead> -->
+<mat-grid-list cols="4" rowHeight="1:1" style="margin-left: auto; margin-right: auto; width: 60%;">
+    <tr *ngFor="let appItem of appDetail">
+        <mat-grid-tile>
+            <mat-card style="margin-top: 20px; width: calc(100% - 70px); height: calc(100% - 70px);">
+                    
+                <img src="http://localhost:5000/Images/{{appItem.appImagePath}}" 
+                height="150px;" width="150px;" class="center" style="margin-left: 15%;">
+
+                    <mat-card-header>
+                        <mat-card-title style="margin-left: 50%;">{{appItem.name}}</mat-card-title>
+                    </mat-card-header>
+
+                    <mat-card-actions >
+                        <!-- <button mat-raised-button style="float: right;">Download</button> -->
+                        <!-- <button 
+                        mat-raised-button
+                        style="float: right;"
+                        [disabled]="disabled"
+                        class="button download"
+                        [ngClass]="{'disabled': disabled}"
+                        (click)="download()">download</button> -->
+                        <app-app-download [fileName]="appItem.id"></app-app-download>
+                    </mat-card-actions>
+  
+        </mat-card>
+        </mat-grid-tile>
+        
+    </tr>
+</mat-grid-list>
+<!-- </table> -->
